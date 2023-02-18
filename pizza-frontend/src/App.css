@@ -17,17 +17,57 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
 .header-main {
 	background-color: var(--tomato-red);
 	height: 30vh;
 	margin: 0;
 	padding: 0;
 	border-bottom: 3px solid black;
+	display: flex;
+	align-items: center;
 }
 
 #site-logo {
 	width: 150px;
 	height: 150px;
-	margin: 20px;
+	margin-left: 20px;
 	border: 3px solid black;
+}
+
+.body-main {
+	display: flex;
+	height: 80vh;
+}
+
+#Searchbox-container {
+	width: 30%;
+	border-right: 1.5px solid black;
+	padding: 20px;
+}
+
+#Result-container {
+	width: 50%;
+	border-right: 1.5px solid black;
+	padding: 20px;
+	padding: 20px;
+}
+
+#Cart-container {
+	padding: 20px;
+	width: 20%;
+	display: flex;
+}
+
+.footer-main {
+	padding: 20px;
+	background-color: var(--icy-blue);
+	height: 30vh;
+	border-top: 1.5px solid black;
+}
+
+#cart-icon {
+	width: 80px;
+	height: 80px;
+	margin-left: 50px;
 }
