@@ -1,7 +1,19 @@
 import { useState } from "react";
+import reactLogo from "./assets/react.svg";
 import "./App.css";
 
 function App() {
+	const [pizzaData, setPizzaData] = useState();
+
+	const [count, setCount] = useState(0);
+
+	const fetchPizzaData = async () => {
+		const res = await fetch("http://localhost:3000/api/pizzas");
+		let data = await res.json();
+		setPizzaData(data);
+	};
+
+	fetchPizzaData();
 	return (
 		<div className="App">
 			<div className="header-main">
