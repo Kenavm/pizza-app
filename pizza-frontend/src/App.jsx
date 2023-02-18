@@ -1,6 +1,6 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
+import NameFilter from "./component/NameFilter";
 
 function App() {
 	const [pizzaData, setPizzaData] = useState();
@@ -22,6 +22,7 @@ function App() {
 			<div className="body-main">
 				<div id="Searchbox-container">
 					<h2>Search for the pizza of your dreams!</h2>
+					<NameFilter></NameFilter>
 				</div>
 				<div id="Result-container">
 					<h2>
