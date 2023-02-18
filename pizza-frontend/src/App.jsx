@@ -32,15 +32,11 @@ function App() {
         <div id="Result-container">
           <h2>
             <u>Results</u>
-            {pizzaData.map((pizza) => {
-              return <PizzaList
-                id={pizza.id}
-                name={pizza.name}
-                ingredients={pizza.ingredients}
-                allergens={pizza.allergens}
-                price={pizza.price}
+            
+              <PizzaList
+               pizzas={pizzaData}
               ></PizzaList>;
-            })}
+           
           </h2>
         </div>
         <div id="Cart-container">
