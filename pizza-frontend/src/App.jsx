@@ -2,24 +2,45 @@ import { useState, useEffect } from "react";
 
 import "./App.css";
 import PizzaList from "./component/PizzaList";
+import PriceFilter from "./component/PriceFilter";
+
+let filtered = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
+  const [priceFilter, setPriceFilter] = useState([]);
 
-    const fetchPizzaData = async () => {
-      const res = await fetch("http://localhost:3000/api/pizzas");
-      let data = await res.json();
-      return data;
-    };
+  const fetchPizzaData = async () => {
+    const res = await fetch("http://localhost:3000/api/pizzas");
+    let data = await res.json();
+    return data;
+  };
 
-    const loadData = async() => {
+  useEffect(() => {
+    const loadData = async () => {
       let data = await fetchPizzaData();
       setPizzaData(data);
-    }
-  
-  loadData();
+    };
+    loadData();
+  }, []);
 
-  console.log(pizzaData)
+  function filterByPrice(min, max) {
+    if(min !== "" && max !== "") {
+      filtered = true;
+      setPriceFilter(pizzaData.filter(pizza => pizza.price > parseInt(min) && pizza.price <= parseInt(max)))
+    } else if (min === "" && max !== "") {
+      filtered = true;
+      setPriceFilter(pizzaData.filter(pizza => pizza.price <= parseInt(max)))
+    } else if (min !== "" && max === "") {
+      filtered = true;
+      setPriceFilter(pizzaData.filter(pizza => pizza.price >= parseInt(min)))
+    } else {
+      setPriceFilter(pizzaData);
+      filtered = false;
+    }
+  }
+
+  console.log(pizzaData);
   return (
     <div className="App">
       <div className="header-main">
@@ -28,15 +49,12 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
+          <PriceFilter filterByPrice={filterByPrice} />
         </div>
         <div id="Result-container">
           <h2>
             <u>Results</u>
-            
-              <PizzaList
-               pizzas={pizzaData}
-              ></PizzaList>;
-           
+            <PizzaList pizzas={filtered ? priceFilter:pizzaData}></PizzaList>;
           </h2>
         </div>
         <div id="Cart-container">
