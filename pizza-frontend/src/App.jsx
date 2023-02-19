@@ -15,22 +15,22 @@ function App() {
   useEffect(() => {
     setPizzaData(data);
   }, []);
-  
-    async function filterByPrice(min, max) {
-      if (min === "" && max === "") {
-        setPriceFilter(pizzaData);
-        filtered = false;
-      } else {
-        let filteredData = await fetchPriceFilter(min, max);
-        filtered = true;
-		console.log(filteredData)
-		
-        setPriceFilter(filteredData);
-      }
+
+  async function filterByPrice(min, max) {
+    if (min === "" && max === "") {
+      setPriceFilter(pizzaData);
+      filtered = false;
+    } else {
+      let filteredData = await fetchPriceFilter(min, max);
+      filtered = true;
+      console.log(filteredData);
+
+      setPriceFilter(filteredData);
     }
-	useEffect(() => {
-		console.log(priceFilter);
-	  }, [priceFilter]);
+  }
+  useEffect(() => {
+    console.log(priceFilter);
+  }, [priceFilter]);
 
   console.log(pizzaData);
   return (
