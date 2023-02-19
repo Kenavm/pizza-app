@@ -7,6 +7,23 @@ pizzasRouter.get("/", (req, res) => {
   let results = JSON.parse(fs.readFileSync("./data/pizzas.json"));
 
   // filtering
+  const min = req.query["min-price"];
+  const max = req.query["max-price"];
+  console.log(results);
+  console.log(min + " " + max);
+  if (min !== undefined && max !== undefined) {
+    if (min !== "" && max !== "") {
+      res.json(
+        results.filter(
+          (pizza) => pizza.price > parseInt(min) && pizza.price <= parseInt(max)
+        )
+      );
+    } else if (min === "" && max !== "") {
+      res.json(results.filter((pizza) => pizza.price <= parseInt(max)));
+    } else if (min !== "" && max === "") {
+      res.json(results.filter((pizza) => pizza.price >= parseInt(min)));
+    }
+  }
 
   if (req.query["name"] !== undefined) {
     const name = req.query["name"];
