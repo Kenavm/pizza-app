@@ -1,20 +1,42 @@
-import { useState } from "react";
-import "./App.css";
 import NameFilter from "./component/NameFilter";
+import { useState, useEffect } from "react";
+
+import "./App.css";
+import PizzaList from "./component/PizzaList";
+import PriceFilter from "./component/PriceFilter";
+import data from "./api/fetchPizza";
+
+let filtered = false;
 
 function App() {
-	const [pizzaData, setPizzaData] = useState();
+	const [pizzaData, setPizzaData] = useState([]);
+	const [priceFilter, setPriceFilter] = useState([]);
 
-	const [count, setCount] = useState(0);
-
-	const fetchPizzaData = async () => {
-		const res = await fetch("http://localhost:3000/api/pizzas");
-		let data = await res.json();
+	useEffect(() => {
 		setPizzaData(data);
-		console.log(pizzaData);
-	};
+	}, []);
 
-	fetchPizzaData();
+	function filterByPrice(min, max) {
+		if (min !== "" && max !== "") {
+			filtered = true;
+			setPriceFilter(
+				pizzaData.filter(
+					(pizza) => pizza.price > parseInt(min) && pizza.price <= parseInt(max)
+				)
+			);
+		} else if (min === "" && max !== "") {
+			filtered = true;
+			setPriceFilter(pizzaData.filter((pizza) => pizza.price <= parseInt(max)));
+		} else if (min !== "" && max === "") {
+			filtered = true;
+			setPriceFilter(pizzaData.filter((pizza) => pizza.price >= parseInt(min)));
+		} else {
+			setPriceFilter(pizzaData);
+			filtered = false;
+		}
+	}
+
+	console.log(pizzaData);
 	return (
 		<div className="App">
 			<div className="header-main">
@@ -23,11 +45,12 @@ function App() {
 			<div className="body-main">
 				<div id="Searchbox-container">
 					<h2>Search for the pizza of your dreams!</h2>
-					<NameFilter></NameFilter>
+					<PriceFilter filterByPrice={filterByPrice} />
 				</div>
 				<div id="Result-container">
 					<h2>
 						<u>Results</u>
+						<PizzaList pizzas={filtered ? priceFilter : pizzaData}></PizzaList>;
 					</h2>
 				</div>
 				<div id="Cart-container">

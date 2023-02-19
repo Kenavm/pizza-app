@@ -1,10 +1,22 @@
+import PizzaComponent from "./PizzaComponent";
+
 function PizzaList(props) {
+  return (
     <div className="pizzaList">
-        props.pizzas.maps(pizza => {
-            <Pizza pizzaId: {props.pizzaId} pizzaName: {props.pizzaName} pizzaAllergens: {props.ingredients} pizzaPrice: {props.pizzaPrice}/>
-        })
-        
+      {props.pizzas.map((pizza) => {
+        return (
+          <PizzaComponent
+            key={pizza.id}
+            id={pizza.id}
+            name={pizza.name}
+            ingredients={pizza.ingredients}
+            allergens={pizza.allergens}
+            price={pizza.price}
+          />
+        );
+      })}
     </div>
+  );
 }
 
-export default PizzaList
+export default PizzaList;
