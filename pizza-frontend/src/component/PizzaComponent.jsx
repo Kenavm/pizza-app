@@ -1,6 +1,6 @@
 export default function PizzaComponent( props ) {
     return (
-    <div className="pizza" id={props.id}>
+    <div className="pizza" key={props.id}>
         <div className="details">
             <h2 className="moreDetails">#{props.id}</h2>
             <h1>{props.name}</h1>
