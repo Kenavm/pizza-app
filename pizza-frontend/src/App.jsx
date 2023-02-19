@@ -11,6 +11,7 @@ function App() {
 		const res = await fetch("http://localhost:3000/api/pizzas");
 		let data = await res.json();
 		setPizzaData(data);
+		console.log(pizzaData);
 	};
 
 	fetchPizzaData();
