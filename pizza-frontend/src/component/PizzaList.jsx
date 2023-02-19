@@ -6,6 +6,7 @@ function PizzaList(props) {
       {props.pizzas.map((pizza) => {
         return (
           <PizzaComponent
+            key={pizza.id}
             id={pizza.id}
             name={pizza.name}
             ingredients={pizza.ingredients}

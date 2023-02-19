@@ -3,26 +3,18 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import PizzaList from "./component/PizzaList";
 import PriceFilter from "./component/PriceFilter";
+import data from './api/fetchPizza'
 
 let filtered = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [priceFilter, setPriceFilter] = useState([]);
-
-  const fetchPizzaData = async () => {
-    const res = await fetch("http://localhost:3000/api/pizzas");
-    let data = await res.json();
-    return data;
-  };
-
+  
   useEffect(() => {
-    const loadData = async () => {
-      let data = await fetchPizzaData();
-      setPizzaData(data);
-    };
-    loadData();
-  }, []);
+    setPizzaData(data);
+  }, [])
+  
 
   function filterByPrice(min, max) {
     if(min !== "" && max !== "") {
