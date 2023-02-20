@@ -9,18 +9,21 @@ pizzasRouter.get("/", (req, res) => {
   // filtering
   const minPrice = req.query["min-price"];
   const maxPrice = req.query["max-price"];
-
-  if (minPrice !== "" && maxPrice !== "") {
-    results = results.filter(
-      (pizza) =>
-        pizza.price > parseInt(minPrice) && pizza.price <= parseInt(maxPrice)
-    );
-  } else if (minPrice === "" && maxPrice !== "") {
-    results = results.filter((pizza) => pizza.price <= parseInt(maxPrice));
-  } else if (minPrice !== "" && maxPrice === "") {
-    results = results.filter((pizza) => pizza.price >= parseInt(minPrice));
+  
+  if(minPrice !== undefined && maxPrice !== undefined) {
+    if (minPrice !== "" && maxPrice !== "") {
+      results = results.filter(
+        (pizza) =>
+          pizza.price > parseInt(minPrice) && pizza.price <= parseInt(maxPrice)
+      );
+    } else if (minPrice === "" && maxPrice !== "") {
+      results = results.filter((pizza) => pizza.price <= parseInt(maxPrice));
+    } else if (minPrice !== "" && maxPrice === "") {
+      results = results.filter((pizza) => pizza.price >= parseInt(minPrice));
+    }
   }
-
+  
+ 
   if (req.query["name"] !== undefined) {
     const name = req.query["name"];
     results = results.filter((pizza) =>
@@ -67,6 +70,7 @@ pizzasRouter.get("/", (req, res) => {
       return 0;
     });
   }
+  console.log(results)
   res.json(results);
 });
 
