@@ -17,7 +17,7 @@ export default function PizzaComponent(props) {
         </div>
         <button className="add-button">Add to cart</button>
       </div>
-      <div>
+      <div className="image-container">
       <img
           className="pizza-image"
           src={`../src/assets/images/${props.name}.jpg`}
