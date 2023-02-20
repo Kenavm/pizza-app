@@ -11,16 +11,14 @@ pizzasRouter.get("/", (req, res) => {
   const maxPrice = req.query["max-price"];
 
   if (minPrice !== "" && maxPrice !== "") {
-    res.json(
-      results.filter(
-        (pizza) =>
-          pizza.price > parseInt(minPrice) && pizza.price <= parseInt(maxPrice)
-      )
+    results = results.filter(
+      (pizza) =>
+        pizza.price > parseInt(minPrice) && pizza.price <= parseInt(maxPrice)
     );
   } else if (minPrice === "" && maxPrice !== "") {
-    res.json(results.filter((pizza) => pizza.price <= parseInt(maxPrice)));
+    results = results.filter((pizza) => pizza.price <= parseInt(maxPrice));
   } else if (minPrice !== "" && maxPrice === "") {
-    res.json(results.filter((pizza) => pizza.price >= parseInt(minPrice)));
+    results = results.filter((pizza) => pizza.price >= parseInt(minPrice));
   }
 
   if (req.query["name"] !== undefined) {
@@ -69,6 +67,7 @@ pizzasRouter.get("/", (req, res) => {
       return 0;
     });
   }
+  res.json(results);
 });
 
 pizzasRouter.get("/:id", (req, res) => {
