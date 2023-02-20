@@ -12,9 +12,9 @@ function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [DataFilteredByPrice, setDataFilteredByPrice] = useState([]);
 
-  useEffect(() => {
-    setPizzaData(data);
-  }, []);
+  // useEffect(() => {
+  //   setPizzaData(data);
+  // }, []);
 
   async function filterByPrice(min, max) {
     if (min === "" && max === "") {
@@ -41,7 +41,7 @@ function App() {
         <div id="Result-container">
           <h2>
             <u>Results</u>
-            <PizzaList pizzas={isFiltered ? DataFilteredByPrice : pizzaData}></PizzaList>;
+            <PizzaList pizzas={isFiltered ? DataFilteredByPrice : pizzaData}></PizzaList>
           </h2>
         </div>
         <div id="Cart-container">
