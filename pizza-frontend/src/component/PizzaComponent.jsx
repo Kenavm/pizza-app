@@ -1,14 +1,28 @@
-import './PizzaComponent.css'
+import "./PizzaComponent.css";
 
-export default function PizzaComponent( props ) {
-    return (
+export default function PizzaComponent(props) {
+  return (
     <div className="pizza" key={props.id}>
-        <p className="title" >{props.name}</p>
-        <div className="ingredients-list">{props.ingredients.map(ingredient => {
-           return <p className='ingredient'>{ingredient}, </p>
-        })}</div>
-        <div> <p className='price'>{`From ${props.price} €`} </p> </div>
-      <button className='add-button'>Add to cart</button>
+      <div className="pizza-content">
+        <p className="title">{props.name}</p>
+        
+        <div className="ingredients-list">
+          {props.ingredients.map((ingredient) => {
+            return <p className="ingredient">{ingredient}, </p>;
+          })}
+        </div>
+        <div>
+          {" "}
+          <p className="price">{`From ${props.price} €`} </p>{" "}
+        </div>
+        <button className="add-button">Add to cart</button>
+      </div>
+      <div>
+      <img
+          className="pizza-image"
+          src={`../src/assets/images/${props.name}.jpg`}
+        />
+      </div>
     </div>
-    )
+  );
 }

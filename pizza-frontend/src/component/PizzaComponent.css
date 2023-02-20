@@ -1,5 +1,6 @@
 .ingredients-list {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .ingredient {
@@ -8,7 +9,9 @@
 }
 
 .pizza {
-    width: 100%
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .price {
@@ -22,6 +25,19 @@
     padding: 3px 8px;
     text-align: center;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 12px;
     cursor: pointer;
+}
+
+.title {
+    margin-bottom: 8px;
+}
+
+.pizza-image {
+    width: 100px;
+
+}
+
+.pizza-content {
+    width: 80%;
 }
