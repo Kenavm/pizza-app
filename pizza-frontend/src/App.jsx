@@ -16,12 +16,12 @@ function App() {
   //   setPizzaData(data);
   // }, []);
 
-  async function filterByPrice(min, max) {
-    if (min === "" && max === "") {
+  async function filterByPrice(minPrice, maxPrice) {
+    if (minPrice === "" && maxPrice === "") {
       setDataFilteredByPrice(pizzaData);
       isFiltered = false;
     } else {
-      let filteredData = await fetchDataFilteredByPrice(min, max);
+      let filteredData = await fetchDataFilteredByPrice({minPrice: minPrice, maxPrice: maxPrice});
       isFiltered = true;
       setDataFilteredByPrice(filteredData);
     }
@@ -46,7 +46,7 @@ function App() {
         </div>
         <div id="Cart-container">
           <h2>Cart</h2>
-          <img id="cart-icon" src="../images/cart.png"></img>
+          <img id="cart-icon" src="./images/cart.png"></img>
         </div>
       </div>
 
