@@ -1,16 +1,16 @@
 import NameFilter from "./component/NameFilter";
 import { useState, useEffect } from "react";
-import fetchPriceFilter from "./api/fetchFilteredDataByPrice";
+import fetchDataFilteredByPrice from "./api/fetchDataFilteredByPrice";
 import "./App.css";
 import PizzaList from "./component/PizzaList";
 import PriceFilter from "./component/PriceFilter";
 import data from "./api/fetchPizza";
 
-let filtered = false;
+let isFiltered = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
-  const [priceFilter, setPriceFilter] = useState([]);
+  const [DataFilteredByPrice, setDataFilteredByPrice] = useState([]);
 
   useEffect(() => {
     setPizzaData(data);
@@ -18,19 +18,14 @@ function App() {
 
   async function filterByPrice(min, max) {
     if (min === "" && max === "") {
-      setPriceFilter(pizzaData);
-      filtered = false;
+      setDataFilteredByPrice(pizzaData);
+      isFiltered = false;
     } else {
-      let filteredData = await fetchPriceFilter(min, max);
-      filtered = true;
-      console.log(filteredData);
-
-      setPriceFilter(filteredData);
+      let filteredData = await fetchDataFilteredByPrice(min, max);
+      isFiltered = true;
+      setDataFilteredByPrice(filteredData);
     }
   }
-  useEffect(() => {
-    console.log(priceFilter);
-  }, [priceFilter]);
 
   console.log(pizzaData);
   return (
@@ -46,7 +41,7 @@ function App() {
         <div id="Result-container">
           <h2>
             <u>Results</u>
-            <PizzaList pizzas={filtered ? priceFilter : pizzaData}></PizzaList>;
+            <PizzaList pizzas={isFiltered ? DataFilteredByPrice : pizzaData}></PizzaList>;
           </h2>
         </div>
         <div id="Cart-container">

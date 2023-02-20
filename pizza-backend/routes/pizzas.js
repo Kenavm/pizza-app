@@ -7,22 +7,20 @@ pizzasRouter.get("/", (req, res) => {
   let results = JSON.parse(fs.readFileSync("./data/pizzas.json"));
 
   // filtering
-  const min = req.query["min-price"];
-  const max = req.query["max-price"];
-  console.log(results);
-  console.log(min + " " + max);
-  if (min !== undefined && max !== undefined) {
-    if (min !== "" && max !== "") {
-      res.json(
-        results.filter(
-          (pizza) => pizza.price > parseInt(min) && pizza.price <= parseInt(max)
-        )
-      );
-    } else if (min === "" && max !== "") {
-      res.json(results.filter((pizza) => pizza.price <= parseInt(max)));
-    } else if (min !== "" && max === "") {
-      res.json(results.filter((pizza) => pizza.price >= parseInt(min)));
-    }
+  const minPrice = req.query["min-price"];
+  const maxPrice = req.query["max-price"];
+
+  if (minPrice !== "" && maxPrice !== "") {
+    res.json(
+      results.filter(
+        (pizza) =>
+          pizza.price > parseInt(minPrice) && pizza.price <= parseInt(maxPrice)
+      )
+    );
+  } else if (minPrice === "" && maxPrice !== "") {
+    res.json(results.filter((pizza) => pizza.price <= parseInt(maxPrice)));
+  } else if (minPrice !== "" && maxPrice === "") {
+    res.json(results.filter((pizza) => pizza.price >= parseInt(minPrice)));
   }
 
   if (req.query["name"] !== undefined) {
@@ -35,10 +33,7 @@ pizzasRouter.get("/", (req, res) => {
     const allergen = req.query["avoid-allergen"];
     results = results.filter((pizza) => !pizza.allergens.includes(allergen));
   }
-  if (req.query["max-price"] !== undefined) {
-    const maxPrice = parseInt(req.query["max-price"]);
-    results = results.filter((pizza) => pizza.price <= maxPrice);
-  }
+
   if (req.query["avoid-allergen-by-name"] !== undefined) {
     const allergenName = req.query["avoid-allergen-by-name"];
     const allergens = JSON.parse(fs.readFileSync("./data/allergens.json"));
@@ -74,8 +69,6 @@ pizzasRouter.get("/", (req, res) => {
       return 0;
     });
   }
-
-  res.json(results);
 });
 
 pizzasRouter.get("/:id", (req, res) => {
