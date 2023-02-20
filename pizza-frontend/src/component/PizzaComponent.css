@@ -1,0 +1,27 @@
+.ingredients-list {
+    display: flex;
+}
+
+.ingredient {
+    font-size: small;
+    margin: 2px;
+}
+
+.pizza {
+    width: 100%
+}
+
+.price {
+    font-size: small;
+}
+
+.add-button {
+    background-color: #b52032;
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+}
