@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./AllergensFilter.css";
+import Button from './ButtonComponent'
 
 export default function AllergensFilter(props) {
   const [allergenToFilter, setAllergenToFilter] = useState("");
@@ -25,7 +26,7 @@ export default function AllergensFilter(props) {
             <option value={allergen.name} key={allergen.name}>{allergen.name}</option>
           ))}
         </select>
-        <button className="filter-button">Filter</button>
+        <Button buttonClassName={"filter-button"} buttonName={"Filter"} />
       </div>
     </form>
   );

@@ -1,0 +1,33 @@
+.order-button {
+  background-color: #b52032;
+  border: none;
+  color: white;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.filter-button {
+  background-color: #b52032;
+  border: none;
+  color: white;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-to-cart-button {
+  background-color: #b52032;
+  border: none;
+  color: white;
+  padding: 3px 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+}
