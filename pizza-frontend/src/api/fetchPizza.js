@@ -1,8 +1,6 @@
 const fetchPizzaData = async (parameter) => {
   let baseUrl = "http://localhost:3000/api/pizzas"
   let url;
-  console.log("parameter" + parameter)
-  console.log("geladen");
 
   if (parameter.minPrice !== undefined && parameter.maxPrice !== undefined) {
     url = `${baseUrl}?min-price=${parameter.minPrice}&max-price=${parameter.maxPrice}`
@@ -32,6 +30,7 @@ const fetchPizzaData = async (parameter) => {
   //  url.concat(`&sort-desc=${parameter.sortBy}`)
   //}
 
+  console.log(url)
   const res = await fetch(url);
   let data = await res.json();
   //console.log("Data" + data);

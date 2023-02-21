@@ -71,9 +71,15 @@ function App() {
   //    setDataFilteredByAllergen(filteredData);
   //  }
   setFilteredData({...filteredData, allergenToFilter: allergenToFilter})
-  setPizzaData(await fetchPizzaData(filteredData))
   }
   
+  useEffect( () => {
+    async function fetchData () {
+       setPizzaData(await fetchPizzaData(filteredData))
+     }
+     fetchData();
+   }, [filteredData])
+
   return (
     <div className="App">
       <div className="header-main">
