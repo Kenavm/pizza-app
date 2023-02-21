@@ -1,4 +1,5 @@
 import "./PizzaComponent.css";
+import Button from './ButtonComponent'
 
 export default function PizzaComponent(props) {
   return (
@@ -15,7 +16,7 @@ export default function PizzaComponent(props) {
           {" "}
           <p className="price">{`From ${props.price} €`} </p>{" "}
         </div>
-        <button className="add-button">Add to cart</button>
+        <Button buttonClassName={"add-to-cart-button"} buttonName={"Add to cart"} />
       </div>
       <div className="image-container">
       <img
