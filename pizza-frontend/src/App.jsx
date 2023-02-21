@@ -35,10 +35,11 @@ function App() {
 
   useEffect(() => {
     async function loadPizzaData() {
-      setPizzaData(await fetchPizzaData({filteredData}));
+      setPizzaData(await fetchPizzaData(filteredData));
     }
     loadPizzaData();
   }, []);
+
   //todo
   //useEffect(() => {
     //setAllergenData(allergensData);
@@ -54,6 +55,7 @@ function App() {
       //setDataFilteredByPrice(filteredData);
     //}
     setFilteredData({...filteredData, minPrice: minPrice, maxPrice: maxPrice})
+    setPizzaData(await fetchPizzaData(filteredData))
   }
 
   console.log(pizzaData);
@@ -69,6 +71,7 @@ function App() {
   //    setDataFilteredByAllergen(filteredData);
   //  }
   setFilteredData({...filteredData, allergenToFilter: allergenToFilter})
+  setPizzaData(await fetchPizzaData(filteredData))
   }
   
   return (
