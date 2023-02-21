@@ -1,7 +1,7 @@
 import NameFilter from "./component/NameFilter";
 import { useState, useEffect } from "react";
 import fetchDataFilteredByPrice from "./api/fetchDataFilteredByPrice";
-
+import fetchDataFilteredByName from "./api/fetchDataFilteredByName";
 import fetchDataFilteredByAllergen from "./api/fetchDataFilteredByAllergen";
 
 import "./App.css";
@@ -13,6 +13,7 @@ import AllergensFilter from "./component/AllergensFilter";
 import OrderForm from "./component/OrderForm";
 
 let isFilteredByAllergen = false;
+let isFilteredByName = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
@@ -22,8 +23,10 @@ function App() {
   //todo: two states min, max, variable pizzaList
   //filter price and allergen
 
-  const [allergenData, setAllergenData] = useState([]);
-  const [dataFilteredByAllergen, setDataFilteredByAllergen] = useState([]);
+	//todo
+	useEffect(() => {
+		setAllergenData(allergensData);
+	}, []);
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -49,7 +52,18 @@ function App() {
     setPizzaData(filteredData);
   }
 
-  console.log(pizzaData);
+	async function onNameInput(NameToFilter) {
+		if (NameToFilter === "") {
+			setDataFilteredByName(pizzaData);
+			isFilteredByName = false;
+		} else {
+			let filteredData = await fetchDataFilteredByName({
+				NameToFilter: NameToFilter,
+			});
+			isFilteredByName = true;
+			setDataFilteredByName(filteredData);
+		}
+	}
 
   async function filterByAllergen(allergenToFilter) {
     if (allergenToFilter === "") {
