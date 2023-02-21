@@ -1,3 +1,5 @@
+import "./OrderButton.css"
+
 export default function OrderButton() {
     return(
         <div>

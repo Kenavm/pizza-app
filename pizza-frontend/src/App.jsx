@@ -11,6 +11,7 @@ import data from "./api/fetchPizza";
 import allergensData from "./api/fetchAllergens"
 
 import AllergensFilter from "./component/AllergensFilter";
+import OrderForm from "./component/OrderForm";
 
 let isFiltered = false;
 let isFilteredByAllergen = false;
@@ -82,6 +83,7 @@ function App() {
         <h3>
           <u>Order summary</u>
         </h3>
+        <OrderForm/>
       </div>
     </div>
   );
