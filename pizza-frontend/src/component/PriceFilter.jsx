@@ -2,8 +2,7 @@ import { useState } from "react";
 import "./PriceFilter.css";
 import Button from "./ButtonComponent";
 function PriceFilter(props) {
-  const [min, setMin] = useState("");
-  const [max, setMax] = useState("");
+  
 
   function handleInput(event) {
     if (event.target.className === "min") {

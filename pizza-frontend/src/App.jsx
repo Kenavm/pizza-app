@@ -7,24 +7,23 @@ import fetchDataFilteredByAllergen from "./api/fetchDataFilteredByAllergen";
 import "./App.css";
 import PizzaList from "./component/PizzaList";
 import PriceFilter from "./component/PriceFilter";
-import allergensData from "./api/fetchAllergens"
-import fetchPizzaData from './api/fetchPizza'
+import allergensData from "./api/fetchAllergens";
+import fetchPizzaData from "./api/fetchPizza";
 import AllergensFilter from "./component/AllergensFilter";
 import OrderForm from "./component/OrderForm";
 
-let isFiltered = false; //if needed -> state
 let isFilteredByAllergen = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [dataFilteredByPrice, setDataFilteredByPrice] = useState([]);
-
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   //todo: two states min, max, variable pizzaList
   //filter price and allergen
 
   const [allergenData, setAllergenData] = useState([]);
   const [dataFilteredByAllergen, setDataFilteredByAllergen] = useState([]);
-
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -32,21 +31,22 @@ function App() {
     }
     loadPizzaData();
   }, []);
-  
+
   //todo
   useEffect(() => {
     setAllergenData(allergensData);
-   }, []);
+  }, []);
 
-  async function filterByPrice(minPrice, maxPrice) {
-    if (minPrice === "" && maxPrice === "") {
-      setDataFilteredByPrice(pizzaData);
-      isFiltered = false;
-    } else {
-      let filteredData = await fetchDataFilteredByPrice({minPrice: minPrice, maxPrice: maxPrice});
-      isFiltered = true;
-      setDataFilteredByPrice(filteredData);
-    }
+  async function filterPizzas(minPrice, maxPrice) {
+    setMinPrice(minPrice);
+    setMaxPrice(maxPrice);
+
+    let filteredData = await fetchPizzas({
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+    });
+
+    setPizzaData(filteredData);
   }
 
   console.log(pizzaData);
@@ -56,12 +56,14 @@ function App() {
       setDataFilteredByAllergen(pizzaData);
       isFilteredByAllergen = false;
     } else {
-      let filteredData = await fetchDataFilteredByAllergen({allergenToFilter: allergenToFilter});
+      let filteredData = await fetchDataFilteredByAllergen({
+        allergenToFilter: allergenToFilter,
+      });
       isFilteredByAllergen = true;
       setDataFilteredByAllergen(filteredData);
     }
   }
-  
+
   return (
     <div className="App">
       <div className="header-main">
@@ -70,14 +72,21 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          {<PriceFilter onFilterByPrice={filterByPrice} />}
-          {<AllergensFilter allergens={allergenData} filterByAllergen={filterByAllergen}/>}
+          {<PriceFilter onFilterByPrice={filterPizzas} />}
+          {
+            <AllergensFilter
+              allergens={allergenData}
+              filterByAllergen={filterByAllergen}
+            />
+          }
         </div>
         <div id="Result-container">
           <h2>
             <u>Results</u>
           </h2>
-          <PizzaList pizzas={isFiltered ? dataFilteredByPrice : pizzaData}></PizzaList>
+          <PizzaList
+            pizzas={isFiltered ? dataFilteredByPrice : pizzaData}
+          ></PizzaList>
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">
@@ -90,7 +99,7 @@ function App() {
         <h3>
           <u>Order summary</u>
         </h3>
-        <OrderForm/>
+        <OrderForm />
       </div>
     </div>
   );
