@@ -1,17 +1,18 @@
 import NameFilter from "./NameFilter";
 import PriceFilter from "./PriceFilter";
 import AllergensFilter from "./AllergensFilter";
-
+import Button from "./ButtonComponent";
 function FilterComponent() {
   return (
     <div>
-        <form onChange={handleSubmit}>
-      <NameFilter onNameFilter={filterByName} />
-      <PriceFilter onFilterByPrice={filterByPrice} />
-      <AllergensFilter
-        allergens={allergenData}
-        onFilterByAllergen={filterByAllergen}
-      />
+      <form >
+        <NameFilter  />
+        <PriceFilter  />
+        <AllergensFilter
+      
+         
+        />
+        <Button className={"filter-button"} buttonName={"Filter"}/>
       </form>
     </div>
   );

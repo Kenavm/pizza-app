@@ -11,6 +11,7 @@ import fetchPizzaData from "./api/fetchPizza";
 import AllergensFilter from "./component/AllergensFilter";
 import NameFilter from "./component/NameFilter";
 import OrderForm from "./component/OrderForm";
+import FilterComponent from "./component/FilterComponent";
 
 let isFilteredByAllergen = false;
 let isFilteredByName = false;
@@ -82,9 +83,7 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <form onSubmit={() => filterPizzas}>
-          
-          </form>
+          <FilterComponent />
         </div>
         <div id="Result-container">
           <h2>
