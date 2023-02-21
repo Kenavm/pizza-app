@@ -1,0 +1,28 @@
+.allergen-label {
+    margin-bottom: 5px;
+    font-size: small;
+  }
+  
+  .allergen-filters {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 2.5px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+  
+  .filter-button {
+    background-color: #b52032;
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  

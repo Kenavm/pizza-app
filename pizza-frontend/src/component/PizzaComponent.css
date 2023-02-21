@@ -1,0 +1,43 @@
+.ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ingredient {
+    font-size: small;
+    margin: 2px;
+}
+
+.pizza {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: small;
+}
+
+.add-button {
+    background-color: #b52032;
+    border: none;
+    color: white;
+    padding: 3px 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.title {
+    margin-bottom: 8px;
+}
+
+.pizza-image {
+    width: 100px;
+    margin-top: 20px;
+}
+
+.pizza-content {
+    width: 80%
+}

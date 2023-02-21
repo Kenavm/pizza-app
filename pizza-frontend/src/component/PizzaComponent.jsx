@@ -1,33 +1,28 @@
-export default function PizzaComponent( props ) {
-    return (
+import "./PizzaComponent.css";
+
+export default function PizzaComponent(props) {
+  return (
     <div className="pizza" key={props.id}>
-        <div className="details">
-            <h2 className="moreDetails">#{props.id}</h2>
-            <h1>{props.name}</h1>
+      <div className="pizza-content">
+        <p className="title">{props.name}</p>
+        
+        <div className="ingredients-list">
+          {props.ingredients.map((ingredient) => {
+            return <p className="ingredient" key={ingredient}>{ingredient}, </p>;
+          })}
         </div>
-        <div className="detailsList">
-            <h2 className="moreDetails">Ingredients: </h2>
-            <ul>
-                {props.ingredients.map((ingredient) => (
-                    <li>{ingredient}</li>
-                ))}
-            </ul>
+        <div>
+          {" "}
+          <p className="price">{`From ${props.price} €`} </p>{" "}
         </div>
-        <div className="detailsList">
-            <h2 className="moreDetails">Allergens: </h2>
-            <ul>
-                {props.allergens.map((allergen) => (
-                    <li>{allergen}</li>
-                ))}
-            </ul>
-        </div>
-        <div className="details">
-            <h2 className="moreDetails">Price: </h2>
-            <h2>{props.price}€</h2>
-        </div>
-        <div className="details">
-          <button  className="addButton" id="addButton${id}">Add to order</button>
-        </div>
+        <button className="add-button">Add to cart</button>
+      </div>
+      <div className="image-container">
+      <img
+          className="pizza-image"
+          src={`../src/assets/images/${props.name.replace(/\s/g, "")}.jpg`}
+        />
+      </div>
     </div>
-    )
+  );
 }
