@@ -32,6 +32,7 @@ function App() {
     }
     loadPizzaData();
   }, []);
+  
   //todo
   useEffect(() => {
     setAllergenData(allergensData);
