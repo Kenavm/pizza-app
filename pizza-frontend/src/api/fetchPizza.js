@@ -4,6 +4,4 @@ const fetchPizzaData = async () => {
   return data;
 };
 
-const data = await fetchPizzaData();
-
-export default data;
+export default fetchPizzaData;

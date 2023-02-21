@@ -16,7 +16,7 @@ function PriceFilter(props) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        props.filterByPrice(min, max);
+        props.onFilterByPrice(min, max);
     }
 
   return (

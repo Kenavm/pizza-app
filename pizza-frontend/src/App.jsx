@@ -7,26 +7,32 @@ import fetchDataFilteredByAllergen from "./api/fetchDataFilteredByAllergen";
 import "./App.css";
 import PizzaList from "./component/PizzaList";
 import PriceFilter from "./component/PriceFilter";
-import data from "./api/fetchPizza";
 import allergensData from "./api/fetchAllergens"
-
+import fetchPizzaData from './api/fetchPizza'
 import AllergensFilter from "./component/AllergensFilter";
 import OrderForm from "./component/OrderForm";
 
-let isFiltered = false;
+let isFiltered = false; //if needed -> state
 let isFilteredByAllergen = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
-  const [DataFilteredByPrice, setDataFilteredByPrice] = useState([]);
+  const [dataFilteredByPrice, setDataFilteredByPrice] = useState([]);
+
+  //todo: two states min, max, variable pizzaList
+  //filter price and allergen
 
   const [allergenData, setAllergenData] = useState([]);
   const [dataFilteredByAllergen, setDataFilteredByAllergen] = useState([]);
 
-  useEffect(() => {
-   setPizzaData(data);
-  }, []);
 
+  useEffect(() => {
+    async function loadPizzaData() {
+      setPizzaData(await fetchPizzaData());
+    }
+    loadPizzaData();
+  }, []);
+  //todo
   useEffect(() => {
     setAllergenData(allergensData);
    }, []);
@@ -63,14 +69,14 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          {<PriceFilter filterByPrice={filterByPrice} />}
+          {<PriceFilter onFilterByPrice={filterByPrice} />}
           {<AllergensFilter allergens={allergenData} filterByAllergen={filterByAllergen}/>}
         </div>
         <div id="Result-container">
           <h2>
             <u>Results</u>
           </h2>
-          <PizzaList pizzas={isFiltered ? DataFilteredByPrice : pizzaData}></PizzaList>
+          <PizzaList pizzas={isFiltered ? dataFilteredByPrice : pizzaData}></PizzaList>
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">
