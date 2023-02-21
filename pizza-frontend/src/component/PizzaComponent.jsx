@@ -20,7 +20,7 @@ export default function PizzaComponent(props) {
       <div className="image-container">
       <img
           className="pizza-image"
-          src={`../src/assets/images/${props.name}.jpg`}
+          src={`../src/assets/images/${props.name.replace(/\s/g, "")}.jpg`}
         />
       </div>
     </div>

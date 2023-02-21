@@ -46,7 +46,7 @@ function App() {
         </div>
         <div id="Cart-container">
           <h2>Cart</h2>
-          <img id="cart-icon" src="./images/cart.png"></img>
+          <img id="cart-icon" src="../images/cart.png"></img>
         </div>
       </div>
 
