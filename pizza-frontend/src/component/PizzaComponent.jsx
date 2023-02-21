@@ -8,7 +8,7 @@ export default function PizzaComponent(props) {
         
         <div className="ingredients-list">
           {props.ingredients.map((ingredient) => {
-            return <p className="ingredient">{ingredient}, </p>;
+            return <p className="ingredient" key={ingredient}>{ingredient}, </p>;
           })}
         </div>
         <div>
