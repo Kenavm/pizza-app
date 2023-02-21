@@ -1,4 +1,3 @@
-import NameFilter from "./component/NameFilter";
 import { useState, useEffect } from "react";
 import fetchDataFilteredByPrice from "./api/fetchDataFilteredByPrice";
 import fetchDataFilteredByName from "./api/fetchDataFilteredByName";
@@ -10,6 +9,7 @@ import PriceFilter from "./component/PriceFilter";
 import allergensData from "./api/fetchAllergens";
 import fetchPizzaData from "./api/fetchPizza";
 import AllergensFilter from "./component/AllergensFilter";
+import NameFilter from "./component/NameFilter";
 import OrderForm from "./component/OrderForm";
 
 let isFilteredByAllergen = false;
@@ -17,16 +17,12 @@ let isFilteredByName = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
-  const [dataFilteredByPrice, setDataFilteredByPrice] = useState([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [allergenData, setAllergenData] = useState([]);
+
   //todo: two states min, max, variable pizzaList
   //filter price and allergen
-
-	//todo
-	useEffect(() => {
-		setAllergenData(allergensData);
-	}, []);
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -52,18 +48,18 @@ function App() {
     setPizzaData(filteredData);
   }
 
-	async function onNameInput(NameToFilter) {
-		if (NameToFilter === "") {
-			setDataFilteredByName(pizzaData);
-			isFilteredByName = false;
-		} else {
-			let filteredData = await fetchDataFilteredByName({
-				NameToFilter: NameToFilter,
-			});
-			isFilteredByName = true;
-			setDataFilteredByName(filteredData);
-		}
-	}
+  async function onNameInput(NameToFilter) {
+    if (NameToFilter === "") {
+      setDataFilteredByName(pizzaData);
+      isFilteredByName = false;
+    } else {
+      let filteredData = await fetchDataFilteredByName({
+        NameToFilter: NameToFilter,
+      });
+      isFilteredByName = true;
+      setDataFilteredByName(filteredData);
+    }
+  }
 
   async function filterByAllergen(allergenToFilter) {
     if (allergenToFilter === "") {
@@ -86,21 +82,15 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          {<PriceFilter onFilterByPrice={filterPizzas} />}
-          {
-            <AllergensFilter
-              allergens={allergenData}
-              filterByAllergen={filterByAllergen}
-            />
-          }
+          <form onSubmit={() => filterPizzas}>
+          
+          </form>
         </div>
         <div id="Result-container">
           <h2>
             <u>Results</u>
           </h2>
-          <PizzaList
-            pizzas={isFiltered ? dataFilteredByPrice : pizzaData}
-          ></PizzaList>
+          <PizzaList pizzas={pizzaData}></PizzaList>
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">

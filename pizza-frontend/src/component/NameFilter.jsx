@@ -29,9 +29,6 @@ export default function NameFilter(props) {
 					value={userInput}
 					placeholder="Type in pizza name"
 				></input>
-				<button type="submit" className="filter-button">
-					Filter
-				</button>
 			</form>
 		</div>
 	);

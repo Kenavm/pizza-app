@@ -33,7 +33,6 @@ function PriceFilter(props) {
           placeholder="max"
           onChange={(e) => handleInput(e)}
         />
-        <Button buttonClassName={"filter-button"} buttonName={"Filter"} />
       </div>
     </form>
   );

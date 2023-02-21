@@ -26,7 +26,6 @@ export default function AllergensFilter(props) {
             <option value={allergen.name} key={allergen.name}>{allergen.name}</option>
           ))}
         </select>
-        <Button buttonClassName={"filter-button"} buttonName={"Filter"} />
       </div>
     </form>
   );
