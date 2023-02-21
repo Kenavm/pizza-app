@@ -83,7 +83,7 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <FilterComponent />
+          <FilterComponent allergens={allergenData}/>
         </div>
         <div id="Result-container">
           <h2>
