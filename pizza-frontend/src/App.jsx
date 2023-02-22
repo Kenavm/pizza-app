@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
 
-
 import "./App.css";
 import PizzaList from "./component/PizzaList";
 import fetchPizzaData from "./api/fetchPizza";
 import OrderForm from "./component/OrderForm";
 import FilterComponent from "./component/FilterComponent";
-
+import fetchAllergensData from "./api/fetchAllergens";
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
-
+  const [allergenData, setAllergenData] = useState([]);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [name, setName] = useState("");
@@ -24,11 +23,18 @@ function App() {
     loadPizzaData();
   }, []);
 
+  useEffect(() => {
+    async function loadAllergenData() {
+      setAllergenData(await fetchAllergensData());
+    }
+		loadAllergenData();
+	}, []);
 
   async function filterPizzas() {
-    console.log("test")
+    console.log(name)
     console.log(minPrice)
     console.log(maxPrice)
+    console.log(allergen)
 
     let filteredData = await fetchPizzas({
       minPrice: minPrice,
@@ -50,8 +56,9 @@ function App() {
           isSetMinPrice={setMinPrice}
           isSetMaxPrice={setMaxPrice}
           isSetName={setName}
-          isSetAllegen={setAllergen}
+          isSetAllergen={setAllergen}
           isFilterPizzas={filterPizzas}
+          allergenData={allergenData}
           />
         </div>
         <div id="Result-container">

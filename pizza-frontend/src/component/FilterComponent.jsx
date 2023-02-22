@@ -6,14 +6,21 @@ import Button from "./ButtonComponent";
 function FilterComponent(props) {
   return (
     <div>
-      
-        
-        <PriceFilter
-          isSetMinPrice={props.isSetMinPrice}
-          isSetMaxPrice={props.isSetMaxPrice}
-        />
-        <Button onClick={props.isFilterPizzas} buttonClassName={"filter-button"} buttonName={"Filter"} />
-     
+      <NameFilter isSetName={props.isSetName} />
+
+      <PriceFilter
+        isSetMinPrice={props.isSetMinPrice}
+        isSetMaxPrice={props.isSetMaxPrice}
+      />
+      <AllergensFilter
+        isSetAllergen={props.isSetAllergen}
+        allergenData={props.allergenData}
+      />
+      <Button
+        onClick={() => props.isFilterPizzas()}
+        buttonClassName={"filter-button"}
+        buttonName={"Filter"}
+      />
     </div>
   );
 }
