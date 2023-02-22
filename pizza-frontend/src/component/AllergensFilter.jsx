@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./AllergensFilter.css";
-import Button from './ButtonComponent'
 
 export default function AllergensFilter(props) {
   const [allergenToFilter, setAllergenToFilter] = useState("");

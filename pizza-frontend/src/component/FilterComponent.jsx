@@ -2,18 +2,18 @@ import NameFilter from "./NameFilter";
 import PriceFilter from "./PriceFilter";
 import AllergensFilter from "./AllergensFilter";
 import Button from "./ButtonComponent";
+
 function FilterComponent(props) {
   return (
     <div>
-      <form >
-        <NameFilter  />
-        <PriceFilter  />
-        <AllergensFilter
-        allergens = {props.allergens}
-         
+      
+        
+        <PriceFilter
+          isSetMinPrice={props.isSetMinPrice}
+          isSetMaxPrice={props.isSetMaxPrice}
         />
-        <Button className={"filter-button"} buttonName={"Filter"}/>
-      </form>
+        <Button onClick={props.isFilterPizzas} buttonClassName={"filter-button"} buttonName={"Filter"} />
+     
     </div>
   );
 }

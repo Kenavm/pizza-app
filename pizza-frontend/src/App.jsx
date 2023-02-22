@@ -1,29 +1,21 @@
 import { useState, useEffect } from "react";
-import fetchDataFilteredByPrice from "./api/fetchDataFilteredByPrice";
-import fetchDataFilteredByName from "./api/fetchDataFilteredByName";
-import fetchDataFilteredByAllergen from "./api/fetchDataFilteredByAllergen";
+
 
 import "./App.css";
 import PizzaList from "./component/PizzaList";
-import PriceFilter from "./component/PriceFilter";
-import allergensData from "./api/fetchAllergens";
 import fetchPizzaData from "./api/fetchPizza";
-import AllergensFilter from "./component/AllergensFilter";
-import NameFilter from "./component/NameFilter";
 import OrderForm from "./component/OrderForm";
 import FilterComponent from "./component/FilterComponent";
 
-let isFilteredByAllergen = false;
-let isFilteredByName = false;
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
+
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [allergenData, setAllergenData] = useState([]);
+  const [name, setName] = useState("");
+  const [allergen, setAllergen] = useState("");
 
-  //todo: two states min, max, variable pizzaList
-  //filter price and allergen
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -32,14 +24,11 @@ function App() {
     loadPizzaData();
   }, []);
 
-  //todo
-  useEffect(() => {
-    setAllergenData(allergensData);
-  }, []);
 
-  async function filterPizzas(minPrice, maxPrice) {
-    setMinPrice(minPrice);
-    setMaxPrice(maxPrice);
+  async function filterPizzas() {
+    console.log("test")
+    console.log(minPrice)
+    console.log(maxPrice)
 
     let filteredData = await fetchPizzas({
       minPrice: minPrice,
@@ -47,32 +36,6 @@ function App() {
     });
 
     setPizzaData(filteredData);
-  }
-
-  async function onNameInput(NameToFilter) {
-    if (NameToFilter === "") {
-      setDataFilteredByName(pizzaData);
-      isFilteredByName = false;
-    } else {
-      let filteredData = await fetchDataFilteredByName({
-        NameToFilter: NameToFilter,
-      });
-      isFilteredByName = true;
-      setDataFilteredByName(filteredData);
-    }
-  }
-
-  async function filterByAllergen(allergenToFilter) {
-    if (allergenToFilter === "") {
-      setDataFilteredByAllergen(pizzaData);
-      isFilteredByAllergen = false;
-    } else {
-      let filteredData = await fetchDataFilteredByAllergen({
-        allergenToFilter: allergenToFilter,
-      });
-      isFilteredByAllergen = true;
-      setDataFilteredByAllergen(filteredData);
-    }
   }
 
   return (
@@ -83,7 +46,13 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <FilterComponent allergens={allergenData}/>
+          <FilterComponent 
+          isSetMinPrice={setMinPrice}
+          isSetMaxPrice={setMaxPrice}
+          isSetName={setName}
+          isSetAllegen={setAllergen}
+          isFilterPizzas={filterPizzas}
+          />
         </div>
         <div id="Result-container">
           <h2>
