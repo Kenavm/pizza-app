@@ -9,6 +9,7 @@ export default function AllergensFilter(props) {
         className="allergen-filters"
         onChange={(e) => props.isSetAllergen(e.target.value)}
       >
+        <option value={""} key={""} />
         {props.allergenData.map((allergen) => (
           <option value={allergen.name} key={allergen.name}>
             {allergen.name}

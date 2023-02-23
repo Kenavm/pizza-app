@@ -15,7 +15,6 @@ export default function NameFilter(props) {
 
   return (
     <div>
-		<label className="name-label">What pizza would you like?</label>
       <input
         onChange={(e) => props.isSetName(e.target.value)}
         placeholder="Type in pizza name"

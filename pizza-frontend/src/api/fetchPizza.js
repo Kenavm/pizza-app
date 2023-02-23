@@ -1,13 +1,13 @@
-const fetchPizzaData = async (parameter) => {
+const fetchPizzaData = async (parameters) => {
   let baseUrl = "http://localhost:3000/api/pizzas"
   let url;
 
-  if (parameter.minPrice !== undefined && parameter.maxPrice !== undefined) {
-    url = `${baseUrl}?min-price=${parameter.minPrice}&max-price=${parameter.maxPrice}`
-  } else if (parameter.allergenToFilter !== "Avoid allergen") {
-    url = baseUrl+`?avoid-allergen-by-name=${parameter.allergenToFilter}`
-  } else if (parameter.name !== "") {
-    url = baseUrl+`?name=${parameter.name}`
+  if (parameters.minPrice !== undefined || parameters.maxPrice !== undefined) {
+    url = `${baseUrl}?min-price=${parameters.minPrice}&max-price=${parameters.maxPrice}`
+  } else if (parameters.allergen !== undefined) {
+    url = baseUrl+`?avoid-allergen-by-name=${parameters.allergen.name}`
+  } else if (parameters.pizzaName !== undefined) {
+    url = baseUrl+`?name=${parameters.pizzaName}`
   //} else if (parameter.sortBy === /*whatever the condition will be*/) {
     //url+`?sort-asc=${parameter.sortBy}`
   //} else if (parameter.sortBy === /*whatever the condition will be*/) {
@@ -15,11 +15,9 @@ const fetchPizzaData = async (parameter) => {
   } else {
     url = baseUrl;
   }
-  if (parameter.allergenToFilter !== "Avoid allergen") {
-    url = url+`&avoid-allergen-by-name=${parameter.allergenToFilter}`
-  }
-  //if (parameter.name !== "") {
-    //url = baseUrl+`&name=${parameter.name}`
+ 
+  //if (parameter.pizzaName !== "") {
+    //url = baseUrl+`&name=${parameter.pizzaName}`
   //}
   
   //console.log(url)
@@ -33,7 +31,7 @@ const fetchPizzaData = async (parameter) => {
   console.log(url)
   const res = await fetch(url);
   let data = await res.json();
-  //console.log("Data" + data);
+ 
   return data;
 };
 

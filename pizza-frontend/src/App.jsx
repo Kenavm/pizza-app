@@ -10,15 +10,14 @@ import fetchAllergensData from "./api/fetchAllergens";
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [allergenData, setAllergenData] = useState([]);
-  const [minPrice, setMinPrice] = useState("");
-  const [maxPrice, setMaxPrice] = useState("");
-  const [name, setName] = useState("");
-  const [allergen, setAllergen] = useState("");
-
+  const [minPrice, setMinPrice] = useState();
+  const [maxPrice, setMaxPrice] = useState();
+  const [name, setName] = useState();
+  const [allergen, setAllergen] = useState();
 
   useEffect(() => {
     async function loadPizzaData() {
-      setPizzaData(await fetchPizzaData(filteredData));
+      setPizzaData(await fetchPizzaData(pizzaData));
     }
     loadPizzaData();
   }, []);
@@ -34,13 +33,14 @@ function App() {
     console.log(name)
     console.log(minPrice)
     console.log(maxPrice)
-    console.log(allergen)
-
-    let filteredData = await fetchPizzas({
+ 
+    let allergenToFilter = allergenData.filter(allergenFromData => allergenFromData.name === allergen)
+  
+    let filteredData = await fetchPizzaData({
       pizzaName: name,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      allergen: allergen,
+      allergen: allergenToFilter[0],
     });
 
     setPizzaData(filteredData);

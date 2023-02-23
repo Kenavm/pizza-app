@@ -2,10 +2,11 @@ import NameFilter from "./NameFilter";
 import PriceFilter from "./PriceFilter";
 import AllergensFilter from "./AllergensFilter";
 import Button from "./ButtonComponent";
+import './FilterComponent.css'
 
 function FilterComponent(props) {
   return (
-    <div>
+    <div className="filter-container">
       <NameFilter isSetName={props.isSetName} />
 
       <PriceFilter
