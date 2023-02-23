@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     async function loadPizzaData() {
-      setPizzaData(await fetchPizzaData());
+      setPizzaData(await fetchPizzaData(filteredData));
     }
     loadPizzaData();
   }, []);
