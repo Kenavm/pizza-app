@@ -3,7 +3,7 @@ import PriceFilter from "../../component/PriceFilter";
 import AllergensFilter from "../../component/AllergensFilter";
 import Sort from "../../component/Sort";
 import Button from "../../component/ButtonComponent";
-import './Filters.css'
+import "./Filters.css";
 import { useState } from "react";
 import fetchPizzaData from "../../api/fetchPizza";
 
@@ -35,21 +35,19 @@ function Filters(props) {
 
       <NameFilter isSetName={setName} />
 
-      <PriceFilter
-        isSetMinPrice={setMinPrice}
-        isSetMaxPrice={setMaxPrice}
-      />
-      <AllergensFilter
-        isSetAllergen={setAllergen}
-        allergenData={props.allergenData}
-      />
-      <Button
-        onClick={() => filterPizzas()}
-        buttonClassName={"filter-button"}
-        buttonName={"Filter"}
-      />
-    </div>
-  );
+			<PriceFilter isSetMinPrice={setMinPrice} isSetMaxPrice={setMaxPrice} />
+			<AllergensFilter
+				isSetAllergen={setAllergen}
+				allergenData={props.allergenData}
+			/>
+			<br />
+			<Button
+				onClick={() => filterPizzas()}
+				buttonClassName={"filter-button"}
+				buttonName={"Filter"}
+			/>
+		</div>
+	);
 }
 
 export default Filters;
