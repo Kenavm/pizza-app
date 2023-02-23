@@ -1,34 +1,22 @@
-import { useState } from "react";
 import "./AllergensFilter.css";
-import Button from './ButtonComponent'
 
 export default function AllergensFilter(props) {
-  const [allergenToFilter, setAllergenToFilter] = useState("");
-
-  function handleInput(event) {
-    setAllergenToFilter(event.target.value);
-  }
-
-  function handleSubmitAllergens(event) {
-    event.preventDefault();
-    props.filterByAllergen(allergenToFilter);
-  }
 
   return (
-    <form onSubmit={handleSubmitAllergens}>
-      <div>
-        <div className="allergen-label">Avoid Allergen</div>
-        <select
-          className="allergen-filters"
-          onChange={(event) => handleInput(event)}
-        >
-          {props.allergens.map((allergen) => (
-            <option value={allergen.name} key={allergen.name}>{allergen.name}</option>
-          ))}
-        </select>
-        <Button buttonClassName={"filter-button"} buttonName={"Filter"} />
-      </div>
-    </form>
+    <div>
+      <div className="allergen-label">Avoid Allergen</div>
+      <select
+        className="allergen-filters"
+        onChange={(e) => props.isSetAllergen(e.target.value)}
+      >
+        <option value={""} key={""} />
+        {props.allergenData.map((allergen) => (
+          <option value={allergen.name} key={allergen.name}>
+            {allergen.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 
@@ -57,4 +45,3 @@ export default function AllergensFilter(props) {
     );
   }
 */
-

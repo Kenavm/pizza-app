@@ -4,7 +4,5 @@ const fetchAllergensData = async () => {
     return data;
   };
   
-  const data = await fetchAllergensData();
-  
-  export default data;
+  export default fetchAllergensData;
   
