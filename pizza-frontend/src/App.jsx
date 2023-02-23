@@ -30,10 +30,6 @@ function App() {
 	}, []);
 
   async function filterPizzas() {
-    console.log(name)
-    console.log(minPrice)
-    console.log(maxPrice)
- 
     let allergenToFilter = allergenData.filter(allergenFromData => allergenFromData.name === allergen)
   
     let filteredData = await fetchPizzaData({
