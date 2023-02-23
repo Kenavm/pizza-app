@@ -50,7 +50,9 @@ function App() {
           <img id="cart-icon" src="./src/assets/images/cart.png"></img>
         </div>
       </div>
+    <div>
 
+    </div>
       <div className="footer-main">
         <h3>
           <u>Order summary</u>
