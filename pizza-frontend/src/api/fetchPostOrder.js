@@ -1,4 +1,4 @@
-const postOrder = async (data) => {
+const fetchPostOrder = async (data) => {
     console.log(data)
   const res = await fetch("http://localhost:3000/api/orders", {
     method: "POST",
@@ -10,4 +10,4 @@ const postOrder = async (data) => {
   
 };
 
-export default postOrder;
+export default fetchPostOrder;

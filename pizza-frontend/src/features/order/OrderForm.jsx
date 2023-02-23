@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../../component/ButtonComponent";
 import "./OrderForm.css";
-import postOrder from "../../api/postOrder";
+import fetchPostOrder from "../../api/fetchPostOrder";
 
 export default function OrderForm() {
   const [name, setName] = useState("");
@@ -33,7 +33,7 @@ export default function OrderForm() {
 
     order = { date, customer, completed: false };
     console.log(order);
-    postOrder(order);
+    fetchPostOrder(order);
   }
   return (
     <div className="order-form">
