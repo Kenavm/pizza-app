@@ -21,6 +21,7 @@ body {
 .header-main {
 	background-color: var(--tomato-red);
 	height: 30vh;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	border-bottom: 3px solid black;
@@ -39,32 +40,41 @@ body {
 
 .body-main {
 	display: flex;
-	height: 80vh;
+	flex-wrap: wrap;
+	height: 100%;
+}
+
+.body-main > * {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 280px;
 }
 
 #Searchbox-container {
-	width: 30%;
-	border-right: 1.5px solid black;
+	border: 1px solid black;
 	padding: 20px;
+	min-height: 280px;
 }
 
 #Result-container {
-	width: 50%;
-	border-right: 1.5px solid black;
+	border: 1px solid black;
 	padding: 20px;
 	padding: 20px;
+	min-height: 280px;
 }
 
 #Cart-container {
+	border: 1px solid black;
+	min-height: 280px;
 	padding: 20px;
-	width: 20%;
 	display: flex;
 }
 
 .footer-main {
-	padding: 20px;
+	padding: 20px 20px 50px 20px;
 	background-color: var(--icy-blue);
 	height: 30vh;
+	width: 100%;
 	border-top: 1.5px solid black;
 }
 
