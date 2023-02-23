@@ -13,7 +13,8 @@ export default function NameFilter(props) {
 	// });
 
 	return (
-		<div>
+		<div className="name-filters">
+			<div className="name-label">Name</div>
 			<input
 				onChange={(e) => props.isSetName(e.target.value)}
 				placeholder="Type in pizza name"
