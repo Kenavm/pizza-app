@@ -71,11 +71,26 @@ body {
 }
 
 .footer-main {
-	padding: 20px 20px 50px 20px;
+	padding: 20px;
+	display: flex;
 	background-color: var(--icy-blue);
-	height: 30vh;
+	height: 33vh;
 	width: 100%;
 	border-top: 1.5px solid black;
+}
+
+.footer-main > * {
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 350px;
+}
+
+#summary {
+	width: 45%;
+}
+
+#placeholder-for-nothing {
+	width: 55%;
 }
 
 #cart-icon {

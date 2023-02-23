@@ -1,4 +1,5 @@
 .filter-container {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	max-width: 80vw;
 }

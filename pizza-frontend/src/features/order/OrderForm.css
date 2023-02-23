@@ -1,15 +1,4 @@
 input {
 	margin: 5px;
-}
-.order-form {
-	display: flex;
-	flex-direction: column;
-	padding-right: 10%;
-	padding-left: 10%;
-}
-
-.order-from > * {
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: 280px;
+	width: 100%;
 }
