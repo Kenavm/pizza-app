@@ -11,7 +11,13 @@ import Cart from "./component/Cart";
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [allergenData, setAllergenData] = useState([]);
-  const [cartContents, setCartContents] = useState([])
+  const [cartContents, setCartContents] = useState([{
+    name:"",
+    price:"",
+    amount:"",
+    total:0
+  }
+  ]);
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -24,17 +30,36 @@ function App() {
     async function loadAllergenData() {
       setAllergenData(await fetchAllergensData());
     }
-		loadAllergenData();
-	}, []);
+    loadAllergenData();
+  }, []);
 
-  function handleAddToCart(name, price) {
+  function handleAddToCart(name, price, amount, total) {
+    console.log(cartContents)
+    amount = 1;
+    total = 0;
     const newContent = {
       name: name,
-      price: price
+      price: price,
+      amount: amount,
+      total: total
+    };
+    for (let i = 0; i < cartContents.length; i++) {
+      if (cartContents[i].name === newContent.name) {
+        cartContents.map((content) => {
+          content.amount += 1;
+          
+        })
+        const newCart2 = [...cartContents]
+        setCartContents(newCart2)
+        total += cartContents[i].price
+         console.log(total)
+      } else {
+        const newCart = [...cartContents, newContent];
+        setCartContents(newCart);
+        total += newContent.price
+        console.log(newCart);
+      }
     }
-    const newCart = [...cartContents, newContent]
-    console.log(newCart)
-    setCartContents(newCart)
   }
 
   return (
@@ -45,27 +70,25 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <Filters
-          allergenData={allergenData}
-          isSetPizzaData={setPizzaData}
-          />
+          <Filters allergenData={allergenData} isSetPizzaData={setPizzaData} />
         </div>
         <div id="Result-container">
           <h2>
             <u>Results</u>
           </h2>
-          <PizzaList pizzas={pizzaData} handleAddToCart={handleAddToCart}></PizzaList>
+          <PizzaList
+            pizzas={pizzaData}
+            handleAddToCart={handleAddToCart}
+          ></PizzaList>
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">
           <h2>Cart</h2>
           <img id="cart-icon" src="./src/assets/images/cart.png"></img>
-          <Cart cartContents={cartContents}/>
+          <Cart cartContents={cartContents} />
         </div>
       </div>
-    <div>
-
-    </div>
+      <div></div>
       <div className="footer-main">
         <h3>
           <u>Order summary</u>

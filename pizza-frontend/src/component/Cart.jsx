@@ -1,11 +1,15 @@
 export default function Cart(props) {
-    function test() {
-        console.log()
-    }
-    test()
     return (
         <div>
-            {props.cartContents[0].name}
+            {props.cartContents.map((pizza)=>{
+               return( <div>
+                <p>Name: {pizza.name}</p>
+                <p>Price: {pizza.price}</p>
+                <p>Amount: {pizza.amount}</p>
+                </div>
+               )
+            })}
+            <p>Total: {props.total}</p>
         </div>
     )
 }
