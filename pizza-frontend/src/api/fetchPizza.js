@@ -5,29 +5,29 @@ const fetchPizzaData = async (parameter) => {
   if (parameter.minPrice !== undefined && parameter.maxPrice !== undefined) {
     url = `${baseUrl}?min-price=${parameter.minPrice}&max-price=${parameter.maxPrice}`
   } else if (parameter.allergenToFilter !== "Avoid allergen") {
-    url = baseUrl.concat(`?avoid-allergen-by-name=${parameter.allergenToFilter}`)
+    url = baseUrl+`?avoid-allergen-by-name=${parameter.allergenToFilter}`
   } else if (parameter.name !== "") {
-    url = baseUrl.concat(`?name=${parameter.name}`)
+    url = baseUrl+`?name=${parameter.name}`
   //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-    //url.concat(`?sort-asc=${parameter.sortBy}`)
+    //url+`?sort-asc=${parameter.sortBy}`
   //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url.concat(`&sort-desc=${parameter.sortBy}`)
+  //  url+`&sort-desc=${parameter.sortBy}`
   } else {
     url = baseUrl;
   }
   if (parameter.allergenToFilter !== "Avoid allergen") {
-    url = url.concat(`&avoid-allergen-by-name=${parameter.allergenToFilter}`)
+    url = url+`&avoid-allergen-by-name=${parameter.allergenToFilter}`
   }
   //if (parameter.name !== "") {
-    //url = baseUrl.concat(`&name=${parameter.name}`)
+    //url = baseUrl+`&name=${parameter.name}`
   //}
   
   //console.log(url)
   //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url.concat(`&sort-asc=${parameter.sortBy}`)
+  //  url+`&sort-asc=${parameter.sortBy}`
   //}
   //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url.concat(`&sort-desc=${parameter.sortBy}`)
+  //  url+`&sort-desc=${parameter.sortBy}`
   //}
 
   console.log(url)
