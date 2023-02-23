@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./ButtonComponent"
+import Button from "../../component/ButtonComponent"
 import "./OrderForm.css"
 
 export default function OrderForm() {
@@ -8,6 +8,7 @@ export default function OrderForm() {
     const [street, setStreet] = useState("")
     const {city, setCity} = useState("")
     return (
+       
         <div className="order-form">
             <input placeholder="name" value={name} onChange={(event) => setName(event.target.value)}></input> <br/>
             <input placeholder="email" value={email} onChange={(event) => setEmail(event.target.value)}></input> <br/>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
-import PizzaList from "./component/PizzaList";
+import PizzaList from "./features/pizzalist/PizzaList";
 import fetchPizzaData from "./api/fetchPizza";
-import OrderForm from "./component/OrderForm";
-import FilterComponent from "./component/FilterComponent";
+import OrderForm from "./features/order/OrderForm";
+import Filter from "./features//filters/Filters";
 import fetchAllergensData from "./api/fetchAllergens";
 
 function App() {
@@ -45,12 +45,12 @@ function App() {
   return (
     <div className="App">
       <div className="header-main">
-        <img id="site-logo" src="../images/logo-pizza.jpg"></img>
+        <img id="site-logo" src="./src/assets/images/logo-pizza.jpg"></img>
       </div>
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <FilterComponent 
+          <Filter 
           isSetMinPrice={setMinPrice}
           isSetMaxPrice={setMaxPrice}
           isSetName={setName}
@@ -68,7 +68,7 @@ function App() {
         </div>
         <div id="Cart-container">
           <h2>Cart</h2>
-          <img id="cart-icon" src="../images/cart.png"></img>
+          <img id="cart-icon" src="./src/assets/images/cart.png"></img>
         </div>
       </div>
 

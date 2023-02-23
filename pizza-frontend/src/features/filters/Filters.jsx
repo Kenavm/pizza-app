@@ -1,10 +1,10 @@
-import NameFilter from "./NameFilter";
-import PriceFilter from "./PriceFilter";
-import AllergensFilter from "./AllergensFilter";
-import Button from "./ButtonComponent";
-import './FilterComponent.css'
+import NameFilter from "../../component/NameFilter";
+import PriceFilter from "../../component/PriceFilter";
+import AllergensFilter from "../../component/AllergensFilter";
+import Button from "../../component/ButtonComponent";
+import './Filters.css'
 
-function FilterComponent(props) {
+function Filters(props) {
   return (
     <div className="filter-container">
       <NameFilter isSetName={props.isSetName} />
@@ -26,4 +26,4 @@ function FilterComponent(props) {
   );
 }
 
-export default FilterComponent;
+export default Filters;

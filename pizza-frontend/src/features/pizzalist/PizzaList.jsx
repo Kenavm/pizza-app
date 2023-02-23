@@ -1,4 +1,4 @@
-import PizzaComponent from "./PizzaComponent";
+import PizzaComponent from "../../component/PizzaComponent";
 
 function PizzaList(props) {
   return (
