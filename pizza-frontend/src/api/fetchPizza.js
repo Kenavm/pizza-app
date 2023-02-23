@@ -1,9 +1,9 @@
 const fetchPizzaData = async (parameters) => {
   let baseUrl = "http://localhost:3000/api/pizzas";
   let url;
-  console.log(parameters.allergen);
-  console.log(parameters.maxPrice);
-  console.log(parameters.pizzaName);
+  console.log("allergen" + parameters.allergen);
+  console.log("maxPrice" + parameters.maxPrice);
+  console.log("pizzaName" +parameters.pizzaName);
   if (
     parameters.minPrice !== undefined &&
     parameters.maxPrice !== undefined &&
@@ -27,9 +27,13 @@ const fetchPizzaData = async (parameters) => {
     url = baseUrl;
   }
 
-  //if (parameter.pizzaName !== "") {
-  //url = baseUrl+`&name=${parameter.pizzaName}`
-  //}
+  if (parameters.pizzaName !== "" && parameters.pizzaName !== undefined) {
+  url = url+`&name=${parameters.pizzaName}`
+  }
+
+  if (parameters.allergen !== undefined) {
+    url = url.concat(`&avoid-allergen-by-name=${parameters.allergen.name}`)
+  }
 
   //console.log(url)
   //if (parameter.sortBy === /*whatever the condition will be*/) {
