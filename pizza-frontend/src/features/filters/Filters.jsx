@@ -16,13 +16,14 @@ function Filters(props) {
   const [sorted, setSorted] = useState();
 
   async function filterPizzas() {
-    let allergenToFilter = props.allergenData.filter(allergenFromData => allergenFromData.name === allergen)
-  
+    let allergenToFilter = props.allergenData.find(allergenFromData => allergenFromData.name === allergen)
+	
+	console.log(allergenToFilter)
     let filteredData = await fetchPizzaData({
       pizzaName: name,
       minPrice: minPrice,
       maxPrice: maxPrice,
-      allergen: allergenToFilter[0],
+      allergen: allergenToFilter,
       sortBy: sorted
     });
     
