@@ -19,31 +19,43 @@ const fetchPizzaData = async (parameters) => {
   } else if (parameters.pizzaName !== undefined) {
     console.log("test name");
     url = baseUrl + `?name=${parameters.pizzaName}`;
-    //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-    //url+`?sort-asc=${parameter.sortBy}`
-    //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-    //  url+`&sort-desc=${parameter.sortBy}`
+  } else if (parameters.sortBy === "Sort by name ascending") {
+    url = baseUrl+`?sort-asc=name`
+  } else if (parameters.sortBy === "Sort by name descending") {
+    url = baseUrl+`?sort-desc=name`
+  } else if (parameters.sortBy === "Sort by price ascending") {
+    url = baseUrl+`?sort-asc=price`
+  } else if (parameters.sortBy === "Sort by price descending") {
+    url = baseUrl+`?sort-desc=price`
   } else {
     url = baseUrl;
   }
 
   if (parameters.pizzaName !== "" && parameters.pizzaName !== undefined) {
-  url = url+`&name=${parameters.pizzaName}`
+    url = url+`&name=${parameters.pizzaName}`
   }
 
   if (parameters.allergen !== undefined) {
     url = url.concat(`&avoid-allergen-by-name=${parameters.allergen.name}`)
   }
 
-  //console.log(url)
-  //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url+`&sort-asc=${parameter.sortBy}`
-  //}
-  //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url+`&sort-desc=${parameter.sortBy}`
-  //}
+  if (parameters.sortBy === "Sort by name ascending" && !url.includes("?sort")) {
+    url = url+`&sort-asc=name`
+  }
+  
+  if (parameters.sortBy === "Sort by name descending" && !url.includes("?sort")) {
+    url = url+`&sort-desc=name`
+  } 
+  
+  if (parameters.sortBy === "Sort by price ascending" && !url.includes("?sort")) {
+    url = url+`&sort-asc=price`
+  }
+  
+  if (parameters.sortBy === "Sort by price descending" && !url.includes("?sort")) {
+    url = url+`&sort-desc=price`
+  }
 
-  console.log(url);
+  console.log("URL"+url);
   const res = await fetch(url);
   let data = await res.json();
 

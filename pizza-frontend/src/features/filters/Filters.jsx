@@ -1,6 +1,7 @@
 import NameFilter from "../../component/NameFilter";
 import PriceFilter from "../../component/PriceFilter";
 import AllergensFilter from "../../component/AllergensFilter";
+import Sort from "../../component/Sort";
 import Button from "../../component/ButtonComponent";
 import './Filters.css'
 import { useState } from "react";
@@ -12,6 +13,7 @@ function Filters(props) {
   const [maxPrice, setMaxPrice] = useState();
   const [name, setName] = useState();
   const [allergen, setAllergen] = useState();
+  const [sorted, setSorted] = useState();
 
   async function filterPizzas() {
     let allergenToFilter = props.allergenData.filter(allergenFromData => allergenFromData.name === allergen)
@@ -21,13 +23,16 @@ function Filters(props) {
       minPrice: minPrice,
       maxPrice: maxPrice,
       allergen: allergenToFilter[0],
+      sortBy: sorted
     });
-
+    
     props.isSetPizzaData(filteredData);
   }
 
   return (
     <div className="filter-container">
+      <Sort isSetSorted={setSorted}/>
+
       <NameFilter isSetName={setName} />
 
       <PriceFilter
