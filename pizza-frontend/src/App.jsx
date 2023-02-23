@@ -6,10 +6,12 @@ import fetchPizzaData from "./api/fetchPizza";
 import OrderForm from "./features/order/OrderForm";
 import Filters from "./features//filters/Filters";
 import fetchAllergensData from "./api/fetchAllergens";
+import Cart from "./component/Cart";
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [allergenData, setAllergenData] = useState([]);
+  const [cartContents, setCartContents] = useState([])
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -24,6 +26,16 @@ function App() {
     }
 		loadAllergenData();
 	}, []);
+
+  function handleAddToCart(name, price) {
+    const newContent = {
+      name: name,
+      price: price
+    }
+    const newCart = [...cartContents, newContent]
+    console.log(newCart)
+    setCartContents(newCart)
+  }
 
   return (
     <div className="App">
@@ -42,12 +54,13 @@ function App() {
           <h2>
             <u>Results</u>
           </h2>
-          <PizzaList pizzas={pizzaData}></PizzaList>
+          <PizzaList pizzas={pizzaData} handleAddToCart={handleAddToCart}></PizzaList>
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">
           <h2>Cart</h2>
           <img id="cart-icon" src="./src/assets/images/cart.png"></img>
+          <Cart cartContents={cartContents}/>
         </div>
       </div>
     <div>
