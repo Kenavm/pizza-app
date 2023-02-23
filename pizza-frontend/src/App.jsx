@@ -37,8 +37,10 @@ function App() {
     console.log(allergen)
 
     let filteredData = await fetchPizzas({
+      pizzaName: name,
       minPrice: minPrice,
       maxPrice: maxPrice,
+      allergen: allergen,
     });
 
     setPizzaData(filteredData);
