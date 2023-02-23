@@ -98,3 +98,13 @@ body {
 	height: 80px;
 	margin-left: 50px;
 }
+
+.test {
+	display: flex;
+}
+
+.pizza-slice {
+	margin-left: 15%;
+	max-width: 60%;
+	height: auto;
+}
