@@ -4,16 +4,12 @@ import "./App.css";
 import PizzaList from "./features/pizzalist/PizzaList";
 import fetchPizzaData from "./api/fetchPizza";
 import OrderForm from "./features/order/OrderForm";
-import Filter from "./features//filters/Filters";
+import Filters from "./features//filters/Filters";
 import fetchAllergensData from "./api/fetchAllergens";
 
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [allergenData, setAllergenData] = useState([]);
-  const [minPrice, setMinPrice] = useState();
-  const [maxPrice, setMaxPrice] = useState();
-  const [name, setName] = useState();
-  const [allergen, setAllergen] = useState();
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -29,19 +25,6 @@ function App() {
 		loadAllergenData();
 	}, []);
 
-  async function filterPizzas() {
-    let allergenToFilter = allergenData.filter(allergenFromData => allergenFromData.name === allergen)
-  
-    let filteredData = await fetchPizzaData({
-      pizzaName: name,
-      minPrice: minPrice,
-      maxPrice: maxPrice,
-      allergen: allergenToFilter[0],
-    });
-
-    setPizzaData(filteredData);
-  }
-
   return (
     <div className="App">
       <div className="header-main">
@@ -50,13 +33,9 @@ function App() {
       <div className="body-main">
         <div id="Searchbox-container">
           <h2>Search for the pizza of your dreams!</h2>
-          <Filter 
-          isSetMinPrice={setMinPrice}
-          isSetMaxPrice={setMaxPrice}
-          isSetName={setName}
-          isSetAllergen={setAllergen}
-          isFilterPizzas={filterPizzas}
+          <Filters
           allergenData={allergenData}
+          isSetPizzaData={setPizzaData}
           />
         </div>
         <div id="Result-container">
