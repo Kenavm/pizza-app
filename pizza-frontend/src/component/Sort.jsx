@@ -1,3 +1,5 @@
+import "./Sort.css";
+
 export default function Sort(props) {
     return (
     <div>

@@ -31,11 +31,11 @@ const fetchPizzaData = async (parameters) => {
     url = baseUrl;
   }
 
-  if (parameters.pizzaName !== "" && parameters.pizzaName !== undefined) {
+  if (parameters.pizzaName !== "" && parameters.pizzaName !== undefined && !url.includes("?name")) {
     url = url+`&name=${parameters.pizzaName}`
   }
 
-  if (parameters.allergen !== undefined) {
+  if (parameters.allergen !== undefined && !url.includes("?avoid")) {
     url = url.concat(`&avoid-allergen-by-name=${parameters.allergen.name}`)
   }
 
