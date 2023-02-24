@@ -1,9 +1,9 @@
 const fetchPizzaData = async (parameters) => {
   let baseUrl = "http://localhost:3000/api/pizzas";
   let url;
-  console.log(parameters.allergen);
-  console.log(parameters.maxPrice);
-  console.log(parameters.pizzaName);
+  console.log("allergen" + parameters.allergen);
+  console.log("maxPrice" + parameters.maxPrice);
+  console.log("pizzaName" +parameters.pizzaName);
   if (
     parameters.minPrice !== undefined &&
     parameters.maxPrice !== undefined &&
@@ -19,27 +19,43 @@ const fetchPizzaData = async (parameters) => {
   } else if (parameters.pizzaName !== undefined) {
     console.log("test name");
     url = baseUrl + `?name=${parameters.pizzaName}`;
-    //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-    //url+`?sort-asc=${parameter.sortBy}`
-    //} else if (parameter.sortBy === /*whatever the condition will be*/) {
-    //  url+`&sort-desc=${parameter.sortBy}`
+  } else if (parameters.sortBy === "Sort by name ascending") {
+    url = baseUrl+`?sort-asc=name`
+  } else if (parameters.sortBy === "Sort by name descending") {
+    url = baseUrl+`?sort-desc=name`
+  } else if (parameters.sortBy === "Sort by price ascending") {
+    url = baseUrl+`?sort-asc=price`
+  } else if (parameters.sortBy === "Sort by price descending") {
+    url = baseUrl+`?sort-desc=price`
   } else {
     url = baseUrl;
   }
 
-  //if (parameter.pizzaName !== "") {
-  //url = baseUrl+`&name=${parameter.pizzaName}`
-  //}
+  if (parameters.pizzaName !== "" && parameters.pizzaName !== undefined && !url.includes("?name")) {
+    url = url+`&name=${parameters.pizzaName}`
+  }
 
-  //console.log(url)
-  //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url+`&sort-asc=${parameter.sortBy}`
-  //}
-  //if (parameter.sortBy === /*whatever the condition will be*/) {
-  //  url+`&sort-desc=${parameter.sortBy}`
-  //}
+  if (parameters.allergen !== undefined && !url.includes("?avoid")) {
+    url = url.concat(`&avoid-allergen-by-name=${parameters.allergen.name}`)
+  }
 
-  console.log(url);
+  if (parameters.sortBy === "Sort by name ascending" && !url.includes("?sort")) {
+    url = url+`&sort-asc=name`
+  }
+  
+  if (parameters.sortBy === "Sort by name descending" && !url.includes("?sort")) {
+    url = url+`&sort-desc=name`
+  } 
+  
+  if (parameters.sortBy === "Sort by price ascending" && !url.includes("?sort")) {
+    url = url+`&sort-asc=price`
+  }
+  
+  if (parameters.sortBy === "Sort by price descending" && !url.includes("?sort")) {
+    url = url+`&sort-desc=price`
+  }
+
+  console.log("URL"+url);
   const res = await fetch(url);
   let data = await res.json();
 

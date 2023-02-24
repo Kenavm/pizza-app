@@ -1,12 +1,4 @@
 input {
-    margin: 5px;
-}
-.order-form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-}
-
-.email-container {
-    display: flex;
+	margin: 5px;
+	width: 100%;
 }

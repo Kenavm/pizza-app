@@ -1,24 +1,24 @@
 import "./NameFilter.css";
-//import fetchPizzaData from "../api/fetchPizza";
 
 export default function NameFilter(props) {
-  // let filteredData = fetchPizzaData();
-  // const prom = Promise.resolve(filteredData);
+	// let filteredData = fetchPizzaData();
+	// const prom = Promise.resolve(filteredData);
 
-  // prom.then((value) => {
-  // 	console.log(value);
+	// prom.then((value) => {
+	// 	console.log(value);
 
-  // 	const nameArray = value.map((obj) => obj.name);
+	// 	const nameArray = value.map((obj) => obj.name);
 
-  // 	console.log(nameArray);
-  // });
+	// 	console.log(nameArray);
+	// });
 
-  return (
-    <div>
-      <input
-        onChange={(e) => props.isSetName(e.target.value)}
-        placeholder="Type in pizza name"
-      ></input>
-    </div>
-  );
+	return (
+		<div className="name-filters">
+			<div className="name-label">Name</div>
+			<input
+				onChange={(e) => props.isSetName(e.target.value)}
+				placeholder="Type in pizza name"
+			></input>
+		</div>
+	);
 }
