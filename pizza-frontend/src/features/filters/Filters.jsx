@@ -32,7 +32,7 @@ function Filters(props) {
 
   return (
     <div className="filter-container">
-      <Sort isSetSorted={setSorted}/>
+      <Sort onSetSorted={setSorted}/>
 
       <NameFilter onSetName={setName} />
 

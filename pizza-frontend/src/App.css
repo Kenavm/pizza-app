@@ -73,7 +73,6 @@ body {
 
 .footer-main {
 	padding: 20px;
-	display: flex;
 	background-color: var(--icy-blue);
 	height: 33vh;
 	width: 100%;
@@ -84,6 +83,7 @@ body {
 	flex-grow: 1;
 	flex-shrink: 1;
 	flex-basis: 350px;
+	width: 30%
 }
 
 #summary {
