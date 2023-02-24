@@ -88,8 +88,10 @@ function App() {
           {/*<PizzaList pizzas={isFilteredByAllergen ? dataFilteredByAllergen : pizzaData}></PizzaList>*/}
         </div>
         <div id="Cart-container">
+          <div className="cart-header">
           <h2>Cart</h2>
           <img id="cart-icon" src="./src/assets/images/cart.png"></img>
+          </div>
           <Cart cartContents={cartContents} total={total} />
         </div>
       </div>

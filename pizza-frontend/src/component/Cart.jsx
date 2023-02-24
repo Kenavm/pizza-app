@@ -1,3 +1,5 @@
+import './Cart.css'
+
 export default function Cart(props) {
   return (
     <div>
@@ -5,12 +7,12 @@ export default function Cart(props) {
         return (
           <div>
             <p>Name: {pizza.name}</p>
-            <p>Price: {pizza.price}</p>
-            <p>Amount: {pizza.amount}</p>
+            <p>Price: {pizza.price}€</p>
+            <p>Amount: {pizza.amount}x</p>
           </div>
         );
       })}
-      <p>{"Total: " + props.total}</p>
+      <p className="total">{"Total: " + props.total} €</p>
     </div>
   );
 }
