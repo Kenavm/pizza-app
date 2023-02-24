@@ -11,13 +11,8 @@ import Cart from "./component/Cart";
 function App() {
   const [pizzaData, setPizzaData] = useState([]);
   const [allergenData, setAllergenData] = useState([]);
-  const [cartContents, setCartContents] = useState([{
-    name:"",
-    price:"",
-    amount:"",
-    total:0
-  }
-  ]);
+  const [cartContents, setCartContents] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function loadPizzaData() {
@@ -33,35 +28,45 @@ function App() {
     loadAllergenData();
   }, []);
 
-  function handleAddToCart(name, price, amount, total) {
-    console.log(cartContents)
-    amount = 1;
-    total = 0;
-    const newContent = {
+  function addItem(name, price, id) {
+    const cartItem = {
+      id:id,
       name: name,
       price: price,
-      amount: amount,
-      total: total
+      amount: 1,
     };
-    for (let i = 0; i < cartContents.length; i++) {
-      if (cartContents[i].name === newContent.name) {
-        cartContents.map((content) => {
-          content.amount += 1;
-          
-        })
-        const newCart2 = [...cartContents]
-        setCartContents(newCart2)
-        total += cartContents[i].price
-         console.log(total)
-      } else {
-        const newCart = [...cartContents, newContent];
-        setCartContents(newCart);
-        total += newContent.price
-        console.log(newCart);
-      }
-    }
+    return cartItem;
   }
 
+  function handleAddToCart(name, price, id) {
+    let alreadyContainsItem = false;
+    cartContents.forEach((item) => {
+      if (item.id === id) {
+        item.amount++;
+        alreadyContainsItem = true;
+      }
+    });
+
+    if (alreadyContainsItem) {
+      setCartContents([...cartContents]);
+    } else {
+      setCartContents([...cartContents, addItem(name, price, id)]);
+    }
+  }
+  console.log(cartContents);
+  useEffect( () => {
+     function calculateTotal() {
+      const initialValue = 0;
+      const total = cartContents.reduce(
+        (accumulator, content) => accumulator + content.price * content.amount,
+        initialValue
+      );
+      setTotal(total)
+    }
+   calculateTotal();
+  }, [cartContents]);
+  console.log(total);
+  
   return (
     <div className="App">
       <div className="header-main">
@@ -85,7 +90,7 @@ function App() {
         <div id="Cart-container">
           <h2>Cart</h2>
           <img id="cart-icon" src="./src/assets/images/cart.png"></img>
-          <Cart cartContents={cartContents} />
+          <Cart cartContents={cartContents} total={total} />
         </div>
       </div>
       <div></div>
@@ -93,7 +98,7 @@ function App() {
         <h3>
           <u>Order summary</u>
         </h3>
-        <OrderForm />
+        <OrderForm pizzas={cartContents}/>
       </div>
     </div>
   );

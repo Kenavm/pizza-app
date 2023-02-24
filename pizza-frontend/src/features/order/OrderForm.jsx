@@ -3,7 +3,7 @@ import Button from "../../component/ButtonComponent";
 import "./OrderForm.css";
 import fetchPostOrder from "../../api/fetchPostOrder";
 
-export default function OrderForm() {
+export default function OrderForm(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [street, setStreet] = useState("");
@@ -31,7 +31,7 @@ export default function OrderForm() {
       },
     };
 
-    order = { date, customer, completed: false };
+    order = { pizzas: props.pizzas, date, customer, completed: false };
     console.log(order);
     fetchPostOrder(order);
   }

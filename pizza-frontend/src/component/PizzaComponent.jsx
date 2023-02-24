@@ -2,11 +2,7 @@ import "./PizzaComponent.css";
 import Button from './ButtonComponent'
 
 export default function PizzaComponent(props) {
-  function add(){
-    console.log("test")
-    props.handleAddToCart(props.name, props.price)
-    console.log(props.name)
-  }
+
   return (
     <div className="pizza" key={props.id}>
       <div className="pizza-content">
@@ -21,7 +17,7 @@ export default function PizzaComponent(props) {
           {" "}
           <p className="price">{`From ${props.price} €`} </p>{" "}
         </div>
-        <Button buttonClassName={"add-to-cart-button"} buttonName={"Add to cart"} onClick={()=>add()}/>
+        <Button onClick={()=> props.handleAddToCart(props.name, props.price, props.id)} buttonClassName={"add-to-cart-button"} buttonName={"Add to cart"}/>
       </div>
       <div className="image-container">
       <img
