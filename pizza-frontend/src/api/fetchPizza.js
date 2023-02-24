@@ -36,7 +36,7 @@ const fetchPizzaData = async (parameters) => {
   }
 
   if (parameters.allergen !== undefined && !url.includes("?avoid")) {
-    url = url.concat(`&avoid-allergen-by-name=${parameters.allergen.name}`)
+    url = url+`&avoid-allergen-by-name=${parameters.allergen.name}`
   }
 
   if (parameters.sortBy === "Sort by name ascending" && !url.includes("?sort")) {
