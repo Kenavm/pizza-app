@@ -9,13 +9,13 @@ function PriceFilter(props) {
           type="text"
           className="min"
           placeholder="min"
-          onChange={(e) => props.isSetMinPrice(e.target.value)}
+          onChange={(e) => props.onSetMinPrice(e.target.value)}
         />
         <input
           type="text"
           className="max"
           placeholder="max"
-          onChange={(e) => props.isSetMaxPrice(e.target.value)}
+          onChange={(e) => props.onSetMaxPrice(e.target.value)}
         />
       </div>
     </div>

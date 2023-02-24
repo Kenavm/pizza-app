@@ -27,14 +27,14 @@ function Filters(props) {
       sortBy: sorted
     });
     
-    props.isSetPizzaData(filteredData);
+    props.onSetPizzaData(filteredData);
   }
 
   return (
     <div className="filter-container">
       <Sort isSetSorted={setSorted}/>
 
-      <NameFilter isSetName={setName} />
+      <NameFilter onSetName={setName} />
 
       <PriceFilter
         onSetMinPrice={setMinPrice}
