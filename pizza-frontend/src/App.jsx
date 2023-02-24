@@ -14,12 +14,12 @@ function App() {
   const [cartContents, setCartContents] = useState([]);
   const [total, setTotal] = useState(0);
 
-	useEffect(() => {
-		async function loadPizzaData() {
-			setPizzaData(await fetchPizzaData(pizzaData));
-		}
-		loadPizzaData();
-	}, []);
+  useEffect(() => {
+    async function loadPizzaData() {
+      setPizzaData(await fetchPizzaData(pizzaData));
+    }
+    loadPizzaData();
+  }, []);
 
   useEffect(() => {
     async function loadAllergenData() {
