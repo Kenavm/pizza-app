@@ -1,11 +1,11 @@
 .min {
-    width: 35px;
-    margin-right: 5px;
+    width: 75px;
+    text-align: center;
 }
 
 .max {
-    width: 35px;
-    margin-right: 15px;
+    width: 75px;
+    text-align: center;
 }
 
 .price-label {
@@ -15,4 +15,11 @@
 
 form {
     margin-bottom: 10px;
+}
+
+.price-filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+    width: 200px;
 }

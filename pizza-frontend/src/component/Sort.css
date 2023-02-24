@@ -8,4 +8,11 @@
     font-size: 15px;
     cursor: pointer;
     margin-right: 15px;
+    margin: 15px;
+    width: 200px;
   }
+
+  .sort-label {
+      margin-bottom: 5px;
+      font-size: small;
+    }

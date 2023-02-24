@@ -3,6 +3,7 @@ import "./Sort.css";
 export default function Sort(props) {
     return (
     <div>
+        <div className="sort-label">Sort</div>
         <select
         className="sort-filters"
         onChange={(e) => props.isSetSorted(e.target.value)}
