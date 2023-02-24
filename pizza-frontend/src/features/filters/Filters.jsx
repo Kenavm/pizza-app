@@ -31,11 +31,11 @@ function Filters(props) {
       <NameFilter isSetName={setName} />
 
       <PriceFilter
-        isSetMinPrice={setMinPrice}
-        isSetMaxPrice={setMaxPrice}
+        onSetMinPrice={setMinPrice}
+        onSetMaxPrice={setMaxPrice}
       />
       <AllergensFilter
-        isSetAllergen={setAllergen}
+        onSetAllergen={setAllergen}
         allergenData={props.allergenData}
       />
       <Button
