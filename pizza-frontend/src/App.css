@@ -71,7 +71,7 @@ body {
 #Result-container {
 	border: 1px solid black;
 	padding: 20px;
-
+	min-width: 40vw;
 	padding: 20px;
 	min-height: 280px;
 }
@@ -93,14 +93,18 @@ body {
 	border-top: 1.5px solid black;
 }
 
-.footer-main > :first-child {
+#container-footer {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#container-footer > :first-child {
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 350px;
-	width: 30%
 }
 
-.footer-main > :last-child {
+#container-footer > :last-child {
 	flex-grow: 3;
 	flex-shrink: 2;
 	flex-basis: 350px;
@@ -111,4 +115,3 @@ body {
 	height: 80px;
 	margin-left: 50px;
 }
-	
