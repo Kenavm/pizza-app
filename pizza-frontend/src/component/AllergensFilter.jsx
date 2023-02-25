@@ -7,7 +7,7 @@ export default function AllergensFilter(props) {
       <div className="allergen-label">Avoid Allergen</div>
       <select
         className="allergen-filters"
-        onChange={(e) => props.isSetAllergen(e.target.value)}
+        onChange={(e) => props.onSetAllergen(e.target.value)}
       >
         <option value={""} key={""} />
         {props.allergenData.map((allergen) => (

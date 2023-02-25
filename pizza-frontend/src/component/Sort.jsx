@@ -6,9 +6,9 @@ export default function Sort(props) {
         <div className="sort-label">Sort</div>
         <select
         className="sort-filters"
-        onChange={(e) => props.isSetSorted(e.target.value)}
+        onChange={(e) => props.onSetSorted(e.target.value)}
         >
-            <option value={""} key={""}></option>
+            <option value={""} key={Math.random()*10000}></option>
             <option value={"Sort by name ascending"} key={"Sort by name ascending"}>Sort by name ascending</option>
             <option value={"Sort by name descending"} key={"Sort by name descending"}>Sort by name descending</option>
             <option value={"Sort by price ascending"} key={"Sort by price ascending"}>Sort by price ascending</option>

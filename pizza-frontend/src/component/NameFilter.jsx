@@ -16,7 +16,7 @@ export default function NameFilter(props) {
 		<div className="name-filters">
 			<div className="name-label">Name</div>
 			<input
-				onChange={(e) => props.isSetName(e.target.value)}
+				onChange={(e) => props.onSetName(e.target.value)}
 				placeholder="Type in pizza name"
 			></input>
 		</div>

@@ -27,28 +27,30 @@ function Filters(props) {
       sortBy: sorted
     });
     
-    props.isSetPizzaData(filteredData);
+    props.onSetPizzaData(filteredData);
   }
 
   return (
     <div className="filter-container">
-      <Sort isSetSorted={setSorted}/>
+      <Sort onSetSorted={setSorted}/>
 
-      <NameFilter isSetName={setName} />
+      <NameFilter onSetName={setName} />
 
-			<PriceFilter isSetMinPrice={setMinPrice} isSetMaxPrice={setMaxPrice} />
-			<AllergensFilter
-				isSetAllergen={setAllergen}
-				allergenData={props.allergenData}
-			/>
-			<br />
-			<Button
-				onClick={() => filterPizzas()}
-				buttonClassName={"filter-button"}
-				buttonName={"Filter"}
-			/>
-		</div>
-	);
+      <PriceFilter
+        onSetMinPrice={setMinPrice}
+        onSetMaxPrice={setMaxPrice}
+      />
+      <AllergensFilter
+        onSetAllergen={setAllergen}
+        allergenData={props.allergenData}
+      />
+      <Button
+        onClick={() => filterPizzas()}
+        buttonClassName={"filter-button"}
+        buttonName={"Filter"}
+      />
+    </div>
+  );
 }
 
 export default Filters;
