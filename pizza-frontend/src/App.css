@@ -82,11 +82,11 @@ body {
 
 	padding: 20px;
 	display: flex;
+	flex-direction: column;
 }
 
 .footer-main {
 	padding: 20px;
-	display: flex;
 	background-color: var(--icy-blue);
 	height: 33vh;
 	width: 100%;
@@ -97,6 +97,7 @@ body {
 	flex-grow: 0;
 	flex-shrink: 0;
 	flex-basis: 350px;
+	width: 30%
 }
 
 .footer-main > :last-child {
@@ -110,3 +111,4 @@ body {
 	height: 80px;
 	margin-left: 50px;
 }
+	

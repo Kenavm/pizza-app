@@ -12,6 +12,7 @@ function PizzaList(props) {
             ingredients={pizza.ingredients}
             allergens={pizza.allergens}
             price={pizza.price}
+            handleAddToCart={props.handleAddToCart}
           />
         );
       })}
