@@ -67,6 +67,12 @@ function App() {
 	}, [cartContents]);
 	console.log(total);
 
+	const onDelete = (childdata) => {
+		console.log(childdata);
+		let newList = cartContents.filter((item) => item.id !== childdata);
+		setCartContents(newList);
+	};
+
 	return (
 		<div className="App">
 			<div className="header-main">
@@ -92,7 +98,7 @@ function App() {
 						<h2>Cart</h2>
 						<img id="cart-icon" src="./src/assets/images/cart.png"></img>
 					</div>
-					<Cart cartContents={cartContents} total={total} />
+					<Cart cartContents={cartContents} total={total} onDelete={onDelete} />
 				</div>
 			</div>
 			<div></div>
