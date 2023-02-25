@@ -1,0 +1,13 @@
+.date {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-container {
+    display: flex;
+}
+
+p {
+    margin: 10px;
+}
+
